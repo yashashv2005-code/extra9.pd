@@ -139,4 +139,4 @@ npm run dev # Start with Node's watch mode
 
 This repository includes `netlify.toml`, `public/_redirects`, and a Netlify Function wrapper so Netlify publishes the frontend from `public/` and proxies `/api/*` to the Express API function.
 
-Netlify Functions use the local JSON file as ephemeral function storage. This is suitable for demos, but production deployments should replace `data/waitlist.json` with a hosted database or persistent external storage.
+Netlify Functions use the writable temporary directory as ephemeral storage. This is suitable for demos, but data can reset when a function instance is replaced; production deployments should use a hosted database or persistent external storage.

@@ -1,7 +1,12 @@
 const fs = require('fs').promises;
+const os = require('os');
 const path = require('path');
 
-const dataFile = path.resolve(process.env.DATA_FILE || path.join(__dirname, '..', 'data', 'waitlist.json'));
+const netlifyRuntime = process.env.NETLIFY === 'true' || process.env.NETLIFY === '1';
+const defaultDataFile = netlifyRuntime
+  ? path.join(os.tmpdir(), 'game-waitlist.json')
+  : path.join(__dirname, '..', 'data', 'waitlist.json');
+const dataFile = path.resolve(process.env.DATA_FILE || defaultDataFile);
 let operation = Promise.resolve();
 
 const ensureFile = async () => {
