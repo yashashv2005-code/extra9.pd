@@ -134,3 +134,9 @@ DATA_FILE=./data/waitlist.json
 npm start   # Start the production-style server
 npm run dev # Start with Node's watch mode
 ```
+
+## Netlify deployment
+
+This repository includes `netlify.toml` and `public/_redirects` so Netlify publishes the frontend from `public/` and serves the page correctly.
+
+Netlify static hosting does not run the Express API. Deploy the Node API separately (for example on Render, Railway, or another Node host), then update the frontend fetch base URL in `public/app.js` from the relative `/api/waitlist` path to the deployed API URL, or add a Netlify Functions proxy.
