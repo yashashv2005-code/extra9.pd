@@ -137,6 +137,6 @@ npm run dev # Start with Node's watch mode
 
 ## Netlify deployment
 
-This repository includes `netlify.toml` and `public/_redirects` so Netlify publishes the frontend from `public/` and serves the page correctly.
+This repository includes `netlify.toml`, `public/_redirects`, and a Netlify Function wrapper so Netlify publishes the frontend from `public/` and proxies `/api/*` to the Express API function.
 
-Netlify static hosting does not run the Express API. Deploy the Node API separately (for example on Render, Railway, or another Node host), then update the frontend fetch base URL in `public/app.js` from the relative `/api/waitlist` path to the deployed API URL, or add a Netlify Functions proxy.
+Netlify Functions use the local JSON file as ephemeral function storage. This is suitable for demos, but production deployments should replace `data/waitlist.json` with a hosted database or persistent external storage.
